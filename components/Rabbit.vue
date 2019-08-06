@@ -59,7 +59,7 @@
 <script>
 import axios from 'axios'
 
-axios.defaults.baseURL = 'http://instagram.com'
+axios.defaults.baseURL = 'https://instagram.com'
 axios.defaults.timeout = 30000
 
 axios.interceptors.request.use(
