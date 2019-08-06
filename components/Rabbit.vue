@@ -49,9 +49,9 @@
             </v-flex>
         </v-layout>
 
-        <div id="id-btn">
+        <!-- <div id="id-btn">
             <button @click="getRabbit">Test btn</button>
-        </div>
+        </div> -->
     </div>
 </template>
 
