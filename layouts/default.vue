@@ -9,7 +9,7 @@
       :fixed="fixed"
       app
     >
-      <span>&copy; Minh Tran 2019</span>
+      <span>&copy; MT 2019</span>
     </v-footer>
   </v-app>
 </template>
