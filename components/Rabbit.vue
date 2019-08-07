@@ -79,6 +79,7 @@ const http = {
 }
 
 export default {
+    props: ["username"],
     name: 'Rabbit',
     components: {
     },
@@ -88,7 +89,7 @@ export default {
     }),
     methods: {
         getRabbit() {
-            http.get('/thoconxinhdep?__a=1').then((response) => {
+            http.get(`/${this.username}?__a=1`).then((response) => {
                 let user = response.data.graphql.user
                 this.profile_img = user.profile_pic_url_hd
                 this.edge_owner_to_timeline_media.count = user.edge_owner_to_timeline_media.count
