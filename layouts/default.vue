@@ -9,7 +9,7 @@
       :fixed="fixed"
       app
     >
-      <span>&copy; BH.ZeroB 2019</span>
+      <span>&copy; minhat 2019</span>
     </v-footer>
   </v-app>
 </template>

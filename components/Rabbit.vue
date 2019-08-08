@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div class="text-center">
+        <div class="text-center" style="margin:auto">
             <v-avatar min-height='300px'>
                 <v-img v-bind:src="profile_img" alt="avatar"
                     lazy-src="https://picsum.photos/id/11/10/6"
@@ -9,8 +9,23 @@
                     min-height="250">
                 </v-img>
             </v-avatar>
+            <p class="headline">@{{this.username}}</p>
         </div>
-        <v-layout>
+        <v-layout style="max-width: 50%; margin: auto;" row wrap align-center>
+            <v-flex class="text-center">
+                <p>{{this.edge_followed}} followers</p>
+            </v-flex>
+            <V-flex>
+                <p class="text-center">{{this.edge_follow}} following</p>
+            </v-flex>
+        </v-layout>
+        <v-card style="max-width: 50%; margin: auto;">
+            <blockquote class="blockquote">
+                <h4>{{this.fullname}}</h4>
+                <p>{{this.biography}}</p>
+            </blockquote>
+        </v-card>
+        <v-layout style="margin: 10px">
             <v-flex md12 xs12 sm6>
                 <v-card>
                     <v-container grid-list-sm fluid>
@@ -84,22 +99,44 @@ export default {
     components: {
     },
     data: () => ({
+        username: '',
+        edge_followed: '',
+        edge_follow: '',
+        fullname: '',
         profile_img: '',
+        biography: '',
         edge_owner_to_timeline_media: {},
     }),
     methods: {
         getRabbit() {
+            this.instagramPhotos()
             http.get(`/${this.username}?__a=1`).then((response) => {
                 let user = response.data.graphql.user
+                this.username = user.username
+                this.edge_followed = user.edge_followed_by.count
+                this.edge_follow = user.edge_follow.count
+                this.fullname = user.full_name
+                this.biography = user.biography
                 this.profile_img = user.profile_pic_url_hd
                 this.edge_owner_to_timeline_media.count = user.edge_owner_to_timeline_media.count
                 this.edge_owner_to_timeline_media.edges = user.edge_owner_to_timeline_media.edges
                 console.log(this.edge_owner_to_timeline_media.edges[0].node)
             })
            
+        },
+        async instagramPhotos () {
+            const userInfoSource = await http.get('https://www.instagram.com/instagram/')
+
+            // userInfoSource.data contains the HTML from Axios
+            const jsonObject = userInfoSource.data.match(/<script type="text\/javascript">window\._sharedData = (.*)<\/script>/)[1].slice(0, -1)
+            console.log('----------------------')
+            console.log(JSON.parse(jsonObject))
+            console.log('----------------------')
+            return JSON.parse(jsonObject)
         }
     },
     mounted() {
+        
         this.getRabbit();
     },
 }
