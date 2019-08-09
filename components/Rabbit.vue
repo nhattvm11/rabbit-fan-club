@@ -12,12 +12,12 @@
             <p class="headline">@{{this.username}}</p>
         </div>
         <v-layout style="max-width: 50%; margin: auto;" row wrap align-center>
-            <v-flex class="text-center">
+            <div class="text-center" style="width: 50%">
                 <p>{{this.edge_followed}} followers</p>
-            </v-flex>
-            <V-flex>
-                <p class="text-center">{{this.edge_follow}} following</p>
-            </v-flex>
+            </div>
+            <div class="text-center" style="width: 50%">
+                <p>{{this.edge_follow}} following</p>
+            </div>
         </v-layout>
         <v-card style="max-width: 50%; margin: auto;">
             <blockquote class="blockquote">
@@ -99,7 +99,6 @@ export default {
     components: {
     },
     data: () => ({
-        username: '',
         edge_followed: '',
         edge_follow: '',
         fullname: '',
