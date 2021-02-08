@@ -1,6 +1,6 @@
 # rabbit-fan-club
 
-> just for fun
+> Just for fun
 
 ## Build Setup
 
